@@ -1,6 +1,6 @@
-const webpack = require('webpack')
+const webpack           = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const path    = require('path')
+const path              = require('path')
 
 module.exports = {
     entry: {
@@ -28,7 +28,7 @@ module.exports = {
     },
     plugins: [
         new CopyWebpackPlugin([
-            { from: 'src/index.html' }
+            { context: 'content', from: '**/*' }
         ]),
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: true,
