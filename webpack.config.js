@@ -30,11 +30,11 @@ module.exports = {
         new CopyWebpackPlugin([
             { context: 'content', from: '**/*' }
         ]),
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
-            compress: {
-                warnings: false,
-            }
-        })
+        // new webpack.optimize.UglifyJsPlugin({
+        //     sourceMap: true,
+        //     compress: {
+        //         warnings: false,
+        //     }
+        // })
     ]
 }

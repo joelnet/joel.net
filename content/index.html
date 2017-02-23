@@ -5,20 +5,47 @@
         <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="styles.css" rel="stylesheet" type="text/css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     </head>
     <body>
-        <script src="app.bundle.js"></script>
-        <div class="content">
-            <div>
-                <img src="images/profile-sm.png" style="float:left;margin-right:20px;" />
-                <h1>Joel Thoms</h1>
-                <div><span class="highlight">Computer Scientist</span> with a love for technology and 20+ years of professional experience.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <a href="https://medium.com/@joelthoms/latest"><i class="fa fa-medium" aria-hidden="true"></i></a>
-            <i class="fa fa-github" aria-hidden="true"></i>
-            <i class="fa fa-twitter" aria-hidden="true"></i>
+        <div class="head">
+            <div class="head__background"></div>
         </div>
+        <div class="content">
+            <div class="profile__container">
+                <img src="images/profile.jpg" class="profile__image center" data-transform="hexagon" data-stroke-color="#3d85c6" />
+            </div>
+            <div>
+                <h1 class="my-name">Joel Thoms</h1>
+                <h4 class="my-title">Computer Scientist</h4>
+            </div>
+            <div class="bigspace"></div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row hexrow">
+                        <div class="col-sm-6 center">
+                            <a href="https://medium.com/@joelthoms/latest" target="_top">
+                                <img src="images/medium-m-color-500px.png" class="center" data-transform="hexagon" data-stroke-color="#00ab6c" />
+                            </a>
+                        </div>
+                        <div class="col-sm-6 center">
+                            <a href="https://twitter.com/joelnet" target="_top">
+                                <img src="images/Twitter_Logo_Blue.png" class="center" data-transform="hexagon" data-stroke-color="#1da1f2" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row hexrow--alt">
+                        <a href="https://github.com/joelnet" target="_top">
+                            <img src="images/Octocat.png" class="hex--small center" data-transform="hexagon" data-stroke-color="#ac5c51" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 center">
+                    <h2>text blocks go here</h2>
+                </div>
+            </div>
+            <div class="bigspace"></div>
+        </div>
+
+        <script src="app.bundle.js"></script>
     </body>
 </html>

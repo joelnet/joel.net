@@ -5,17 +5,78 @@ html, body {
     font-size: 21px;
     color: #333;
 }
-h1, h2, h3 {
+h1, h2, h3, h4 {
     font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
     margin-bottom: 10px;
+}
+.hide {
+    display: none !important;
+}
+img.center,
+svg.center {
+    display: block;
+    margin: 0 auto;
+}
+div.center {
+    text-align: center;
 }
 .content {
     width: 1000px;
-    margin: 20px auto 0 auto;
+    margin: 0 auto;
+}
+.head {
+    height: 375px;
+    overflow-y: hidden;
+}
+.head__background {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#00adfa+21,00296b+100 */
+    background: #00adfa; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, #00adfa 21%, #00296b 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover, #00adfa 21%,#00296b 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center, #00adfa 21%,#00296b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00adfa', endColorstr='#00296b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    height: 750px;
+    color: #e0e0e0;
 }
 i.fa {
     font-size: 120px;
 }
 .highlight {
     color: #3d85c6;
+}
+.profile__container {
+    height: 275px;
+}
+.profile__image {
+    position: relative;
+    top: -250px;
+    width: 500px;
+}
+.my-name {
+    text-align: center;
+    margin: 0;
+}
+.my-title {
+    font-family: 'Libre Baskerville', serif;
+    text-align: center;
+    margin: 0;
+    color: #3d85c6;
+}
+.row {
+    clear: both;
+}
+.col-sm-6 {
+    width: 50%;
+    float: left;
+}
+.hex--small {
+    width: 50%;
+}
+.hexrow--alt {
+    position: relative;
+    top: -47px;
+}
+.bigspace {
+    height: 100px;
 }
