@@ -50,7 +50,7 @@ i.fa {
 }
 .profile__image {
     position: relative;
-    top: -250px;
+    top: -50%;
     width: 500px;
 }
 .my-name {
@@ -79,4 +79,15 @@ i.fa {
 }
 .bigspace {
     height: 100px;
+}
+
+@media screen and (max-width: 999px) {
+    .content {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 767px) {
+    .profile__image {
+        width: 80%;
+    }
 }

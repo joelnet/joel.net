@@ -11,3 +11,8 @@ export const set = (prop, ...props) => value => obj =>
   !props.length
     ? (obj[prop] = value, obj)
     : (set(props)(value)(obj[prop]), obj)
+
+export const get = (prop, ...props) => obj =>
+  obj == null || prop == null
+    ? obj
+    : get(...props)(obj[prop])
