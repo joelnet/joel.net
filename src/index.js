@@ -41,6 +41,9 @@ const setProfileImageTop = data => compose(
 const setHeaderAndProfileImagePosition =
     compose(setProfileImageTop, setHeaderHeightFromImageHeight)
 
+const log = line =>
+    $('#debug')[0].innerHTML += `<div>${ line }</div>`
+
 mapImageToHexagon(images)
 
 const windowResizeObservable =
@@ -48,6 +51,8 @@ const windowResizeObservable =
     .merge(Rx.Observable.fromEvent(window, 'resize'))
     .map(_ => getDimensions(window))
     .subscribeOnNext(data => {
+        log('window: ' + JSON.stringify(data))
+        
         setHeaderAndProfileImagePosition(data)
         const x = (-95 + getProfileImageHeight(data)) * 0.095
         map(row => {

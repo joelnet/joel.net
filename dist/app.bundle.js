@@ -237,11 +237,17 @@ var setProfileImageTop = function setProfileImageTop(data) {
 };
 var setHeaderAndProfileImagePosition = (0, _functional.compose)(setProfileImageTop, setHeaderHeightFromImageHeight);
 
+var log = function log(line) {
+    return (0, _functionalDom.$)('#debug')[0].innerHTML += '<div>' + line + '</div>';
+};
+
 mapImageToHexagon(images);
 
 var windowResizeObservable = _rxLite2.default.Observable.fromEvent(window, 'DOMContentLoaded').merge(_rxLite2.default.Observable.fromEvent(window, 'resize')).map(function (_) {
     return getDimensions(window);
 }).subscribeOnNext(function (data) {
+    log('window: ' + JSON.stringify(data));
+
     setHeaderAndProfileImagePosition(data);
     var x = (-95 + getProfileImageHeight(data)) * 0.095;
     (0, _functional.map)(function (row) {
