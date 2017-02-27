@@ -16,3 +16,6 @@ export const get = (prop, ...props) => obj =>
   obj == null || prop == null
     ? obj
     : get(...props)(obj[prop])
+
+export const execute = f => x =>
+  (f(x), x)

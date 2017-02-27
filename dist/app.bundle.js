@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -128,6 +128,12 @@ var get = exports.get = function get(prop) {
   };
 };
 
+var execute = exports.execute = function execute(f) {
+  return function (x) {
+    return f(x), x;
+  };
+};
+
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -138,7 +144,7 @@ var get = exports.get = function get(prop) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.replaceDomWithHtml = exports.insertAfter = exports.hideElement = exports.addEventListener = exports.$ = undefined;
+exports.replaceDomWithHtml = exports.insertAfter = exports.removeElement = exports.hideElement = exports.addEventListener = exports.$ = undefined;
 
 var _functional = __webpack_require__(0);
 
@@ -160,16 +166,20 @@ var addEventListener = exports.addEventListener = function addEventListener() {
 
 var hideElement = exports.hideElement = (0, _functional.set)('style', 'display')('none');
 
+var removeElement = exports.removeElement = function removeElement(dom) {
+    return dom.parentNode.removeChild(dom), dom;
+};
+
 var insertAfter = exports.insertAfter = function insertAfter(html) {
     return function (dom) {
-        return dom.insertAdjacentHTML('afterend', html);
+        return dom.insertAdjacentHTML('afterend', html), dom;
     };
 };
 
 var replaceDomWithHtml = exports.replaceDomWithHtml = function replaceDomWithHtml(html) {
-    return (0, _functional.pipe)(hideElement, function (dom) {
+    return (0, _functional.pipe)(function (dom) {
         return insertAfter(html)(dom), dom;
-    });
+    }, removeElement);
 };
 
 /***/ }),
@@ -179,13 +189,17 @@ var replaceDomWithHtml = exports.replaceDomWithHtml = function replaceDomWithHtm
 "use strict";
 
 
-var _rxLite = __webpack_require__(4);
+var _rxLite = __webpack_require__(6);
 
 var _rxLite2 = _interopRequireDefault(_rxLite);
 
 var _functional = __webpack_require__(0);
 
+var _functionalMath = __webpack_require__(5);
+
 var _functionalDom = __webpack_require__(1);
+
+var _combinators = __webpack_require__(4);
 
 var _hexagon = __webpack_require__(3);
 
@@ -193,25 +207,41 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 console.clear();
 
+// TODO: move a bunch of this shit to it's own service
+var TABLET_WIDTH = 767;
 var mapImageToHexagon = (0, _functional.map)(_hexagon.imageToHexagon);
 var images = (0, _functionalDom.$)('img[data-transform="hexagon"]');
 var getDimensions = function getDimensions(dom) {
-         return { width: dom.outerWidth, height: dom.outerHeight };
+    return { width: dom.outerWidth, height: dom.outerHeight };
 };
-var getCurrentTargetDimensions = (0, _functional.compose)(getDimensions, (0, _functional.get)('currentTarget'));
 var head = (0, _functionalDom.$)('.head')[0];
+var getProfileImageHeight = function getProfileImageHeight(_ref) {
+    var width = _ref.width;
+    return width <= TABLET_WIDTH ? width * .8 : 500;
+};
+var setHeaderHeight = function setHeaderHeight(height) {
+    return head.style.height = height + 'px';
+};
+var setHeaderHeightFromImageHeight = (0, _functional.execute)((0, _functional.compose)(setHeaderHeight, (0, _functionalMath.multiply)(.6), getProfileImageHeight));
+var moveProfileImageUp = function moveProfileImageUp(container) {
+    return function (image) {
+        return function (px) {
+            image.style.top = -px + 'px';
+            container.style.height = px + 'px';
+            return px;
+        };
+    };
+};
+var setProfileImageTop = function setProfileImageTop(data) {
+    return (0, _functional.compose)(moveProfileImageUp((0, _functionalDom.$)('.profile__container')[0])((0, _functionalDom.$)('.profile__image')[0]), (0, _functionalMath.multiply)(.5), getProfileImageHeight)(data);
+};
+var setHeaderAndProfileImagePosition = (0, _functional.compose)(setProfileImageTop, setHeaderHeightFromImageHeight);
 
 mapImageToHexagon(images);
 
-_rxLite2.default.Observable.fromEvent(window, 'resize').throttle(100).map(getCurrentTargetDimensions).subscribeOnNext(function (data) {
-         var profileImageHeight = Math.round((0, _functionalDom.$)('svg.profile__image')[0].getBoundingClientRect().height);
-         var newHeight = Math.round(profileImageHeight * .6);
-         var profileImageTop = -Math.round(profileImageHeight / 2);
-
-         (0, _functionalDom.$)('svg.profile__image')[0].style.top = profileImageTop + 'px';
-         head.style.height = newHeight + 'px';
-         (0, _functionalDom.$)('.profile__container')[0].style.height = -profileImageTop + 'px';
-});
+var windowResizeObservable = _rxLite2.default.Observable.fromEvent(window, 'DOMContentLoaded').merge(_rxLite2.default.Observable.fromEvent(window, 'resize')).map(function (_) {
+    return getDimensions(window);
+}).subscribeOnNext(setHeaderAndProfileImagePosition);
 
 /***/ }),
 /* 3 */
@@ -231,6 +261,7 @@ var _functional = __webpack_require__(0);
 
 var _functionalDom = __webpack_require__(1);
 
+// TODO: remove count state and replace with Random.
 var imageToHexagonHtml = function imageToHexagonHtml(_ref) {
   var count = _ref.count,
       image = _ref.image,
@@ -270,6 +301,40 @@ var imageToHexagon = exports.imageToHexagon = (0, _functional.pipe)(imageToOptio
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var K = exports.K = function K(a) {
+  return function (b) {
+    return a;
+  };
+};
+
+var always = exports.always = K;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var multiply = exports.multiply = function multiply(x) {
+  return function (y) {
+    return x * y;
+  };
+};
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global, process) {var __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c) Microsoft, All rights reserved. See License.txt in the project root for license information.
@@ -7328,10 +7393,10 @@ Observable.fromNodeCallback = function (fn, ctx, selector) {
 
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)(module), __webpack_require__(5), __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)(module), __webpack_require__(7), __webpack_require__(9)))
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports) {
 
 var g;
@@ -7358,7 +7423,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -7386,7 +7451,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -7572,7 +7637,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(2);

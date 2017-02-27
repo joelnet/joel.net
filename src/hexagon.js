@@ -1,6 +1,7 @@
 import { pipe }               from './lib/functional'
 import { replaceDomWithHtml } from './lib/functional-dom'
 
+// TODO: remove count state and replace with Random.
 const imageToHexagonHtml = ({ count, image, className, strokeWidth = 2, strokeColor = '#333333' }) =>
   `<svg viewbox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" class="${ className }">
      <defs>

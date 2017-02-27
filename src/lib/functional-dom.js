@@ -7,10 +7,12 @@ export const addEventListener = (...events) => func => obj =>
 
 export const hideElement = set('style', 'display')('none')
 
-export const insertAfter = html => dom => dom.insertAdjacentHTML('afterend', html)
+export const removeElement = dom => (dom.parentNode.removeChild(dom), dom)
+
+export const insertAfter = html => dom => (dom.insertAdjacentHTML('afterend', html), dom)
 
 export const replaceDomWithHtml = html =>
     pipe(
-        hideElement,
-        dom => (insertAfter(html)(dom), dom) 
+        dom => (insertAfter(html)(dom), dom),
+        removeElement
     )
