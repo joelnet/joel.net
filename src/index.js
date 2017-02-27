@@ -47,4 +47,11 @@ const windowResizeObservable =
     Rx.Observable.fromEvent(window, 'DOMContentLoaded')
     .merge(Rx.Observable.fromEvent(window, 'resize'))
     .map(_ => getDimensions(window))
-    .subscribeOnNext(setHeaderAndProfileImagePosition)
+    .subscribeOnNext(data => {
+        setHeaderAndProfileImagePosition(data)
+        const x = (-95 + getProfileImageHeight(data)) * 0.095
+        map(row => {
+            row.style.top = -x + 'px'
+            console.log(row)
+        })($('.hexrow--alt'))
+    })

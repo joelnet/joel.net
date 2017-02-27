@@ -241,7 +241,14 @@ mapImageToHexagon(images);
 
 var windowResizeObservable = _rxLite2.default.Observable.fromEvent(window, 'DOMContentLoaded').merge(_rxLite2.default.Observable.fromEvent(window, 'resize')).map(function (_) {
     return getDimensions(window);
-}).subscribeOnNext(setHeaderAndProfileImagePosition);
+}).subscribeOnNext(function (data) {
+    setHeaderAndProfileImagePosition(data);
+    var x = (-95 + getProfileImageHeight(data)) * 0.095;
+    (0, _functional.map)(function (row) {
+        row.style.top = -x + 'px';
+        console.log(row);
+    })((0, _functionalDom.$)('.hexrow--alt'));
+});
 
 /***/ }),
 /* 3 */

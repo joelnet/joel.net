@@ -66,6 +66,9 @@ i.fa {
 .row {
     clear: both;
 }
+.offset-sm-3 {
+    padding-left: 25%;
+}
 .col-sm-6 {
     width: 50%;
     float: left;
