@@ -237,18 +237,16 @@ var setProfileImageTop = function setProfileImageTop(data) {
 };
 var setHeaderAndProfileImagePosition = (0, _functional.compose)(setProfileImageTop, setHeaderHeightFromImageHeight);
 
-var log = function log(line) {
-    (0, _functionalDom.$)('#debug')[0].innerHTML += '<div>' + line + '</div>';
-    console.log(line);
-};
+// const log = line => {
+//     $('#debug')[0].innerHTML += `<div>${ line }</div>`
+//     console.log(line)
+// }
 
 mapImageToHexagon(images);
 
 var windowResizeObservable = _rxLite2.default.Observable.fromEvent(window, 'DOMContentLoaded').merge(_rxLite2.default.Observable.fromEvent(window, 'resize')).map(function (_) {
     return getDimensions(window);
 }).subscribeOnNext(function (data) {
-    log('window: ' + JSON.stringify(data));
-
     var hexMarginAsPercent = 0.175; //0.164
     var width = Math.min(1000, data.width) * hexMarginAsPercent;
     var yOffset = Math.cos(60) * width;
