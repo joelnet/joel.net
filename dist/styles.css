@@ -89,7 +89,7 @@ i.fa {
         width: 100%;
     }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 625px) {
     .profile__image {
         width: 80%;
     }

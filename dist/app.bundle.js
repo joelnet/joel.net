@@ -238,7 +238,8 @@ var setProfileImageTop = function setProfileImageTop(data) {
 var setHeaderAndProfileImagePosition = (0, _functional.compose)(setProfileImageTop, setHeaderHeightFromImageHeight);
 
 var log = function log(line) {
-    return (0, _functionalDom.$)('#debug')[0].innerHTML += '<div>' + line + '</div>';
+    (0, _functionalDom.$)('#debug')[0].innerHTML += '<div>' + line + '</div>';
+    console.log(line);
 };
 
 mapImageToHexagon(images);
@@ -248,11 +249,21 @@ var windowResizeObservable = _rxLite2.default.Observable.fromEvent(window, 'DOMC
 }).subscribeOnNext(function (data) {
     log('window: ' + JSON.stringify(data));
 
+    var marginAsPercent = 0.18;
+    var width = Math.min(1000, data.width) * marginAsPercent;
+    console.log('width', width);
+
+    var __y = Math.cos(60) * width;
+    // 1.089324619
+    // (1000 / 4) - 229.5
+    // spacing ?= 82
+
     setHeaderAndProfileImagePosition(data);
-    var x = (-95 + getProfileImageHeight(data)) * 0.095;
+    //const x = (-95 + getProfileImageHeight(data)) * 0.095
+    var x = __y;
+    log({ __y: __y, x: (-95 + getProfileImageHeight(data)) * 0.095 });
     (0, _functional.map)(function (row) {
-        row.style.top = -x + 'px';
-        console.log(row);
+        row.style.top = x / 4 + 'px';
     })((0, _functionalDom.$)('.hexrow--alt'));
 });
 
