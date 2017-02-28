@@ -249,21 +249,14 @@ var windowResizeObservable = _rxLite2.default.Observable.fromEvent(window, 'DOMC
 }).subscribeOnNext(function (data) {
     log('window: ' + JSON.stringify(data));
 
-    var marginAsPercent = 0.18;
-    var width = Math.min(1000, data.width) * marginAsPercent;
-    console.log('width', width);
-
-    var __y = Math.cos(60) * width;
-    // 1.089324619
-    // (1000 / 4) - 229.5
-    // spacing ?= 82
+    var hexMarginAsPercent = 0.175; //0.164
+    var width = Math.min(1000, data.width) * hexMarginAsPercent;
+    var yOffset = Math.cos(60) * width;
 
     setHeaderAndProfileImagePosition(data);
-    //const x = (-95 + getProfileImageHeight(data)) * 0.095
-    var x = __y;
-    log({ __y: __y, x: (-95 + getProfileImageHeight(data)) * 0.095 });
+
     (0, _functional.map)(function (row) {
-        row.style.top = x / 4 + 'px';
+        row.style.top = yOffset / 4 + 'px';
     })((0, _functionalDom.$)('.hexrow--alt'));
 });
 

@@ -55,20 +55,13 @@ const windowResizeObservable =
     .subscribeOnNext(data => {
         log('window: ' + JSON.stringify(data))
 
-        const marginAsPercent = 0.18
-        const width = Math.min(1000, data.width) * marginAsPercent
-        console.log('width', width)
-
-        const __y = Math.cos(60) * width
-        // 1.089324619
-        // (1000 / 4) - 229.5
-        // spacing ?= 82
+        const hexMarginAsPercent = 0.175 //0.164
+        const width = Math.min(1000, data.width) * hexMarginAsPercent
+        const yOffset = Math.cos(60) * width
         
         setHeaderAndProfileImagePosition(data)
-        //const x = (-95 + getProfileImageHeight(data)) * 0.095
-        const x = __y
-        log({ __y, x: (-95 + getProfileImageHeight(data)) * 0.095 })
+
         map(row => {
-            row.style.top = (x / 4) + 'px'
+            row.style.top = (yOffset / 4) + 'px'
         })($('.hexrow--alt'))
     })
