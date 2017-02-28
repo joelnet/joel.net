@@ -41,8 +41,10 @@ const setProfileImageTop = data => compose(
 const setHeaderAndProfileImagePosition =
     compose(setProfileImageTop, setHeaderHeightFromImageHeight)
 
-const log = line =>
+const log = line => {
     $('#debug')[0].innerHTML += `<div>${ line }</div>`
+    console.log(line)
+}
 
 mapImageToHexagon(images)
 
@@ -52,11 +54,14 @@ const windowResizeObservable =
     .map(_ => getDimensions(window))
     .subscribeOnNext(data => {
         log('window: ' + JSON.stringify(data))
+
+        const hexMarginAsPercent = 0.175 //0.164
+        const width = Math.min(1000, data.width) * hexMarginAsPercent
+        const yOffset = Math.cos(60) * width
         
         setHeaderAndProfileImagePosition(data)
-        const x = (-95 + getProfileImageHeight(data)) * 0.095
+
         map(row => {
-            row.style.top = -x + 'px'
-            console.log(row)
+            row.style.top = (yOffset / 4) + 'px'
         })($('.hexrow--alt'))
     })
