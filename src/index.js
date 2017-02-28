@@ -53,8 +53,8 @@ const windowResizeObservable =
     .merge(Rx.Observable.fromEvent(window, 'resize'))
     .map(_ => getDimensions(window))
     .subscribeOnNext(data => {
-        const hexMarginAsPercent = 0.175 //0.164
-        const width = Math.min(1000, data.width) * hexMarginAsPercent
+        const hexMarginAsPercent = 0.175
+        const width = Math.min(1000, data.width) * hexMarginAsPercent * (data.width <= TABLET_WIDTH ? 2 : 1)
         const yOffset = Math.cos(60) * width
         
         setHeaderAndProfileImagePosition(data)

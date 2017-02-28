@@ -66,10 +66,12 @@ i.fa {
 .row {
     clear: both;
 }
-.offset-sm-3 {
+.offset-sm-3,
+.offset-xs-3 {
     padding-left: 25%;
 }
-.col-sm-6 {
+.col-sm-6,
+.col-xs-6 {
     width: 50%;
     float: left;
 }
@@ -92,5 +94,11 @@ i.fa {
 @media screen and (max-width: 767px) {
     .profile__image {
         width: 80%;
+    }
+    .col-sm-6,
+    .col-sm-3 {
+        clear: both;
+        width: 100%;
+        float: none;
     }
 }
