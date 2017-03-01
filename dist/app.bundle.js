@@ -247,8 +247,8 @@ mapImageToHexagon(images);
 var windowResizeObservable = _rxLite2.default.Observable.fromEvent(window, 'DOMContentLoaded').merge(_rxLite2.default.Observable.fromEvent(window, 'resize')).map(function (_) {
     return getDimensions(window);
 }).subscribeOnNext(function (data) {
-    var hexMarginAsPercent = 0.175; //0.164
-    var width = Math.min(1000, data.width) * hexMarginAsPercent;
+    var hexMarginAsPercent = 0.175;
+    var width = Math.min(1000, data.width) * hexMarginAsPercent * (data.width <= TABLET_WIDTH ? 2 : 1) * (data.width <= TABLET_WIDTH ? .8 : 1);
     var yOffset = Math.cos(60) * width;
 
     setHeaderAndProfileImagePosition(data);

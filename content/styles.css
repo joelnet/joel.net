@@ -10,6 +10,9 @@ h1, h2, h3, h4 {
     font-weight: normal;
     margin-bottom: 10px;
 }
+a {
+    color: #3d85c6;
+}
 .hide {
     display: none !important;
 }
@@ -82,23 +85,42 @@ i.fa {
     position: relative;
     top: -47px;
 }
+.hexcontainer:hover a {
+    opacity: 0.25;
+    transition: 0.3s;
+}
+.hexcontainer:hover a:hover {
+    opacity: 1;
+}
 .bigspace {
     height: 100px;
 }
-
+.about {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    text-align: justify;
+}
 @media screen and (max-width: 999px) {
     .content {
         width: 100%;
     }
 }
 @media screen and (max-width: 767px) {
-    .profile__image {
-        width: 80%;
+    .bigspace {
+        height: 50px;
     }
     .col-sm-6,
     .col-sm-3 {
         clear: both;
         width: 100%;
         float: none;
+    }
+    .profile__image {
+        width: 80%;
+    }
+    .hexcontainer {
+        width: 80%;
+        margin: 0 auto;
     }
 }
