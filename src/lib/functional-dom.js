@@ -1,6 +1,8 @@
 import { set, pipe } from './functional'
 
-export const $ = document.querySelectorAll.bind(document)
+export const $ = document.querySelector.bind(document)
+
+export const $$ = document.querySelectorAll.bind(document)
 
 export const addEventListener = (...events) => func => obj =>
   events.reduce((obj, event) => (obj.addEventListener(event, func), obj) , obj)

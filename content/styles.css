@@ -4,17 +4,32 @@ html, body {
     font-family: 'Libre Baskerville', serif;
     font-size: 21px;
     color: #333;
+    background-color: #f0f0f0;
+    line-height: 1.8em;
 }
 h1, h2, h3, h4 {
     font-family: 'Open Sans', sans-serif;
     font-weight: normal;
     margin-bottom: 10px;
 }
+h2 {
+    margin: 50px 0;
+    text-align: center;
+    color: #3d85c6;
+}
 a {
     color: #3d85c6;
 }
+footer {
+    margin-top: 50px;
+    text-align: center;
+}
 .hide {
     display: none !important;
+}
+.hexover {
+    position: relative;
+    z-index: 100;
 }
 img.center,
 svg.center {
@@ -25,7 +40,7 @@ div.center {
     text-align: center;
 }
 .content {
-    width: 1000px;
+    width: 700px;
     margin: 0 auto;
 }
 .head {
@@ -69,12 +84,33 @@ i.fa {
 .row {
     clear: both;
 }
+.push-xs-3 {
+    left: 25%;
+}
+.offset-xs-25,
+.offset-sm-25 {
+    padding-left: 20.83%
+}
+.offset-xs-2,
+.offset-sm-2 {
+    padding-left: 16.66%
+}
 .offset-sm-3,
 .offset-xs-3 {
     padding-left: 25%;
 }
-.col-sm-6,
-.col-xs-6 {
+.col-xs-4,
+.col-sm-4 {
+    width: 33.33%;
+    float: left;
+}
+.col-xs-5,
+.col-sm-5 {
+    width: 41.66%;
+    float: left;
+}
+.col-xs-6,
+.col-sm-6 {
     width: 50%;
     float: left;
 }
@@ -94,16 +130,24 @@ i.fa {
 }
 .bigspace {
     height: 100px;
+    clear: both;
 }
 .about {
-    text-align: center;
-    width: 90%;
-    margin: 0 auto;
     text-align: justify;
 }
-@media screen and (max-width: 999px) {
+.card {
+    position: relative;
+    border: 2px solid #ddd;
+    border-radius: 3px;
+    background-color: #fff;
+    padding: 8px;
+    margin: 0 5px;
+    z-index: 1;
+    text-align: justify;
+}
+@media screen and (max-width: 777px) {
     .content {
-        width: 100%;
+        width: 90%;
     }
 }
 @media screen and (max-width: 767px) {
@@ -111,6 +155,7 @@ i.fa {
         height: 50px;
     }
     .col-sm-6,
+    .col-sm-4,
     .col-sm-3 {
         clear: both;
         width: 100%;
