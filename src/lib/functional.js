@@ -17,5 +17,8 @@ export const get = (prop, ...props) => obj =>
     ? obj
     : get(...props)(obj[prop])
 
-export const execute = f => x =>
+export const call = f => x =>
   (f(x), x)
+
+export const before = (main, func) => (...props) =>
+  (func(...props), main(...props))
