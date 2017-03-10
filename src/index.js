@@ -12,8 +12,9 @@ import { PHONE_WIDTH }   from './constants'
 
 console.clear()
 
-const images = $$('img[data-transform="hexagon"]')
 const head = $('.head')
+const images = $$('img[data-transform="hexagon"]')
+const cards = $$('.card')
 
 const getWindowDimensions = () => getDimensions(window)
 
@@ -64,5 +65,5 @@ windowLoadAndResizeEvents
     .map(getWindowDimensions)
     .subscribeOnNext(data => {
         setHeaderAndProfileImagePosition(data)
-        mapSetCardDimensions($$('.card'))
+        mapSetCardDimensions(cards)
     })
