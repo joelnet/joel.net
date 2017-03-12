@@ -1,14 +1,20 @@
-import Rx                 from 'rx-lite'
+import Rx                  from 'rx-lite'
 
 import { map,
          compose,
-         before }         from './lib/functional'
-import { multiply }       from './lib/functional-math'
+         before }          from './lib/functional'
+import { multiply }        from './lib/functional-math'
 import { $,
          $$,
-         getDimensions }  from './lib/functional-dom'
-import { imageToHexagon } from './hexagon'
-import { PHONE_WIDTH }   from './constants'
+         getDimensions }   from './lib/functional-dom'
+import { imageToHexagon }  from './hexagon'
+import { PHONE_WIDTH }     from './constants'
+import googleAnalytics     from './lib/google-analytics'
+import config              from './config'
+
+/********************************************************************/
+/* TODO: Move this stuff into a service module                      */
+/********************************************************************/
 
 console.clear()
 
@@ -67,3 +73,6 @@ windowLoadAndResizeEvents
         setHeaderAndProfileImagePosition(data)
         mapSetCardDimensions(cards)
     })
+
+// insert google analytics code
+googleAnalytics(config.googleAnalytics.code)
