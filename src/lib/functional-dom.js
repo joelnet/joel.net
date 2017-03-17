@@ -20,3 +20,9 @@ export const replaceDomWithHtml = html =>
 
 export const getDimensions = dom =>
     ({ width: dom.outerWidth, height: dom.outerHeight })
+
+export const getWindowDimensions = (windoww = window) => getDimensions(window)
+
+export const log = (...args) => console && console.log(...args)
+
+export const clearLog = () => console && console.clear()
