@@ -7,7 +7,7 @@ import { PHONE_WIDTH } from './constants'
 /**
  * Sets the height of the height of the header
  */
-const setHeaderHeight = height => head.style.height = height + 'px'
+const setHeaderHeight = head => height => head.style.height = height + 'px'
 
 /**
  * Moves the profile image up
@@ -22,24 +22,24 @@ const moveProfileImageUp = (container, image) => px => {
  * Given the window width, return the profile image width. 80% on mobile or 500px
  * note: This must be kept in sync with the css.
  */
-export const getProfileImageHeight = ({ width }) => width <= PHONE_WIDTH ? width * .8 : 500
+const getProfileImageHeight = ({ width }) => width <= PHONE_WIDTH ? width * .8 : 500
 
 /**
  * Set the header height based off the profile image height.
  * note: This is so the profile image will hover over half the header.
  */
-export const setHeaderHeightFromImageHeight = multiplier =>
+const setHeaderHeightFromImageHeight = head =>
     compose(
-        setHeaderHeight,
-        multiply(multiplier),
+        setHeaderHeight(head),
+        multiply(0.6),
         getProfileImageHeight)
 
-export const setProfileImageTop = data =>
+const setProfileImageTop = data =>
     compose(
         moveProfileImageUp($('.profile__container'), $('.profile__image')),
         multiply(.5),
         getProfileImageHeight
     )(data)
 
-export const setHeaderAndProfileImagePosition =
-    before(setProfileImageTop, setHeaderHeightFromImageHeight)
+export const setHeaderAndProfileImagePosition = head =>
+    before(setProfileImageTop, setHeaderHeightFromImageHeight(head))

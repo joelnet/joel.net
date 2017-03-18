@@ -24,7 +24,7 @@ const windowLoadAndResizeEvents =
 windowLoadAndResizeEvents
     .map(getWindowDimensions)
     .subscribeOnNext(data => {
-        setHeaderAndProfileImagePosition(data)
+        setHeaderAndProfileImagePosition(head)(data)
         setAllCardDimensions(cards)
     })
 
