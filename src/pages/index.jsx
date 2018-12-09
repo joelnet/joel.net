@@ -268,17 +268,8 @@ const Index = () => (
               turn this hobby into a career. I have been programming web applications professionally since 1996.
             </AboutSub>
           </AboutHero>
-          <AboutDesc>
-            Contact me on:
-            <ul>
-              <li>
-                <a href="https://www.linkedin.com/in/joel-thoms/">Linked in</a>
-              </li>
-              <li>
-                <a href="https://twitter.com/joelnet">Twitter</a>
-              </li>
-            </ul>
-          </AboutDesc>
+          {/* <AboutDesc>
+          </AboutDesc> */}
         </Inner>
       </Content>
       <Divider fill="#23262b" speed={0.2} offset={4}>
@@ -301,14 +292,13 @@ const Index = () => (
         <Inner>
           <Title>Get in touch</Title>
           <ContactText>
-            Say <a href="mailto:plizNoSp4m@domain.tld">Hi</a> or find me on other platforms:{' '}
-            <a href="https://dribbble.com/LekoArts">Dribbble</a> &{' '}
-            <a href="https://www.instagram.com/lekoarts.de/">Instagram</a>
+            Find me on these platforms: <a href="https://twitter.com/joelnet">Twitter</a> &{' '}
+            <a href="https://www.linkedin.com/in/joel-thoms/">Linked in</a>
           </ContactText>
         </Inner>
         <Footer>
-          &copy; 2018 by Gatsby Starter Portfolio Cara.{' '}
-          <a href="https://github.com/LekoArts/gatsby-starter-portfolio-cara">Github Repository</a>.
+          &copy; 2018 by joel.net.
+          template by <a href="https://github.com/LekoArts/gatsby-starter-portfolio-cara">Gatsby Starter Portfolio Cara</a>.
         </Footer>
       </Content>
       <Divider speed={0.1} offset={4}>
