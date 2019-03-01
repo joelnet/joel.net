@@ -2,8 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
+import { OutboundLink } from 'gatsby-plugin-google-analytics';
 
-const Wrapper = styled.a`
+const Wrapper = styled(OutboundLink)`
   width: 100%;
   ${tw('shadow-lg relative no-underline rounded-lg px-8 py-8 md:py-24 text-white')};
   background: ${props => props.bg};

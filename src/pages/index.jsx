@@ -104,12 +104,12 @@ const AboutSub = styled.span`
   ${tw('text-white pt-12 lg:pt-0 lg:pl-12 text-2xl lg:text-3xl xl:text-4xl')};
 `;
 
-const AboutDesc = styled.p`
-  ${tw('text-grey-light text-lg md:text-xl lg:text-2xl font-sans pt-6 md:pt-12 text-justify')};
-  a {
-    color: white;
-  }
-`;
+// const AboutDesc = styled.p`
+//   ${tw('text-grey-light text-lg md:text-xl lg:text-2xl font-sans pt-6 md:pt-12 text-justify')};
+//   a {
+//     color: white;
+//   }
+// `;
 
 const ContactText = styled.p`
   ${tw('text-grey-light font-sans text-xl md:text-2xl lg:text-3xl')};
@@ -297,8 +297,8 @@ const Index = () => (
           </ContactText>
         </Inner>
         <Footer>
-          &copy; 2018 by joel.net.
-          template by <a href="https://github.com/LekoArts/gatsby-starter-portfolio-cara">Gatsby Starter Portfolio Cara</a>.
+          &copy; 2018 by joel.net. template by{' '}
+          <a href="https://github.com/LekoArts/gatsby-starter-portfolio-cara">Gatsby Starter Portfolio Cara</a>.
         </Footer>
       </Content>
       <Divider speed={0.1} offset={4}>
